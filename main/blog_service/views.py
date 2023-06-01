@@ -33,12 +33,11 @@ class ReporterView(generics.GenericAPIView):
         return self.get_paginated_response(serialized.data)
 
     def post(self, request, *args, **kwargs):
-        data = request.data
-        serlized = self.get_serializer(data = data)
-        if serlized.is_valid():
-            serlized.save()
-            return response.Response(serlized.data,status=status.HTTP_201_CREATED)
-        return response.Response(serlized.eroors, status=status.HTTP_400_BAD_REQUEST)
+        serialized = self.get_serializer(data=request.data)
+        if serialized.is_valid():
+            serialized.save()
+            return response.Response(serialized.data, status=status.HTTP_201_CREATED)
+        return response.Response(serialized.eroors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ReporterViewDetails(generics.GenericAPIView):
@@ -71,4 +70,3 @@ class ReporterViewDetails(generics.GenericAPIView):
             data.delete()
             return response.Response(status=status.HTTP_204_NO_CONTENT)
         return response.Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
