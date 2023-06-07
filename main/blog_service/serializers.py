@@ -1,4 +1,4 @@
-from .models import Reporter
+from .models import Reporter, Article
 from rest_framework import serializers
 # from .models import Reporter
 
@@ -16,3 +16,8 @@ class ReporterSerializers(serializers.ModelSerializer):
         # fields = ("first_name", "last_name")
         # read_only_fields
         #write_only_fields
+
+class ArticleSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = "__all__"
