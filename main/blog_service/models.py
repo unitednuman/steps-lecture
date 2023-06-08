@@ -8,7 +8,15 @@ class Reporter(models.Model):
     email = models.EmailField()
 
 
+class Publisher(models.Model):
+    name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone_no = models.CharField(max_length=100)
+
+
 class Article(models.Model):
     headline = models.CharField(max_length=100)
     details = models.TextField()
-    reporter = models.ForeignKey(to=Reporter,  on_delete=models.CASCADE)
+    reporter = models.ForeignKey(to=Reporter, on_delete=models.CASCADE)
+    publisher = models.ManyToManyField(to=Publisher)
